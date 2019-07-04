@@ -5,7 +5,7 @@
  */
 
 /**
- * 冒泡算法
+ * 冒泡排序
  * @params：Number[]
  * @returns: Number[] 
  */
@@ -57,3 +57,60 @@ function selectionSort(arr) {
   }
 }
 selectionSort([1,2,3,4,6,73,2,3,1,1,1,2,3,4,5,7,87,5,5,3,2,1,])
+
+/**
+ * 插入排序
+ * @params：Number[]
+ * @returns: Number[] 
+ */
+
+function insertSort(arr){
+  let type = Object.prototype.toString.call(arr).slice(8,-1)
+  if(type === 'Array'){
+    let len = arr.length;
+    let preIndex,currentValue
+    for(let i = 1;i < len;i++){
+      currentValue = arr[i]
+      preIndex = i - 1
+      while(preIndex >= 0 && arr[preIndex] > currentValue){
+        arr[preIndex+1] = arr[preIndex]
+        preIndex--
+      }
+      arr[preIndex+1] = currentValue
+    }
+    return arr
+  }else{
+    console.log('参数只能为数组')
+  }
+}
+
+insertSort([1,2,3,4,6,73,2,3,1,1,1,2,3,4,5,7,87,5,5,3,2,1,])
+
+/**
+ * 快速排序
+ * @params：Number[]
+ * @returns: Number[] 
+ */
+
+function quickSort(arr) {
+  let type = Object.prototype.toString.call(arr).slice(8,-1)
+  if(type === "Array"){
+    if(arr.length <= 1){return arr}
+    let len = arr.length
+    let item = arr[0]
+    let left = []
+    let right = []
+    for(let i = 1;i < len;i++){
+      if(arr[i] < item){
+        left.push(arr[i])
+      }else{
+        right.push(arr[i])
+      }
+    }
+    return quickSort(left).concat(item,quickSort(right))
+  }else{
+    console.log('参数只能为数组')
+  }
+}
+
+quickSort([1,2,3,4,6,73,2,3,1,1,1,2,3,4,5,7,87,5,5,3,2,1,])
